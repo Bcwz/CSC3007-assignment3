@@ -43,8 +43,8 @@
                     .text(d.properties['Name'])
                     .style("position", "absolute")
                     .style("background", "#fff")
-                    .style("left", (event.pageX) + "px")
-                    .style("top", (event.pageY) + "px");
+                    .style("left", (event.pageX -10) + "px")
+                    .style("top", (event.pageY +10) + "px");
                 })
                 .on("mouseout", (event, d) => {
                     d3.select(".tooltip")
