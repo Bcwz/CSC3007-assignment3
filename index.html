@@ -22,6 +22,7 @@
 
             console.log(data[0]);
             console.log(data[1]);
+            console.log(data[1][0]);
 
             // Map and projection
             var projection = d3.geoMercator()
@@ -39,8 +40,9 @@
                 .attr("d", geopath)
                 .attr("fill", "black")
                 .on("mouseover", (event, d) => {
+                    //console.log(getPopulation(d,data[1]))
                     d3.select(".tooltip")
-                    .text(d.properties['Name'])
+                    .text(d.properties['Name'] + " Population : " + getPopulation(d,data[1])) 
                     .style("position", "absolute")
                     .style("background", "#fff")
                     .style("left", (event.pageX -10) + "px")
@@ -51,6 +53,17 @@
                     .text("");
                 });
             })
+
+            function getPopulation(d,data1){
+                //console.log("TEST", d.properties['Name'])
+                //console.log("subzone", data1[0].Subzone.toUpperCase())
+                for (let i=0; i<= data1.length; i++){
+                    if(data1[i].Subzone.toUpperCase() == d.properties['Name']){
+                        console.log(d.properties['Name'])
+                        return data1[i].Population
+                    }
+                }
+            }
 
         </script>
 
