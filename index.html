@@ -76,15 +76,19 @@
 
             function getPopulation(d,data1){
                 //console.log("TEST", d.properties['Name'])
-                //console.log("subzone", data1[0].Subzone.toUpperCase())
-                for (let i=0; i<= data1.length; i++){
-                    if(data1[i].Subzone.toUpperCase() == d.properties['Name']){
-                        console.log(d.properties['Name'])
-                        return data1[i].Population
-                    }else{
-                        return "UNKNOWN"
+                try{
+                    for (let i=0; i<= data1.length; i++){
+                        if(data1[i].Subzone.toUpperCase() == d.properties['Name']){
+                            //console.log(d.properties['Name'])
+                            if(data1[i].Population != "-"){
+                                return data1[i].Population
+                            }else{
+                                return 0
+                            }
+                        }                                 
                     }
-                    
+                }catch(e){
+                    return 0
                 }
             }
 
